@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./app.css";
 
 const NombreLista = () => {
   const nombresOriginales = ["ARRAY[0]", "ARRAY[1]", "ARRAY[2]"];
@@ -56,20 +57,20 @@ const NombreLista = () => {
 
   return (
     <div>
-      <h1>Lista de Nombres</h1>
+      <h1>MAKE YOUT LIST</h1>
       <input
         type="text"
         value={nombre}
         onChange={handleNombreChange}
-        placeholder="Escribe un nombre"
+        placeholder="type item"
       />
       <button onClick={nombreEditando ? guardarEdicion : agregarNombre}>
-        {nombreEditando ? "Guardar Edición" : "Agregar Nombre"}
+        {nombreEditando ? "SAVE CHANGES" : "ADD NAME"}
       </button>
-      <button onClick={reasignarNombres}>Reasignar Aleatoriamente</button>
+      <button onClick={reasignarNombres}>GO RANDOM</button>
       <ul>
         {nombresLista.map((nombre, index) => (
-          <li key={index}>
+          <li key={index} className="nombre-item">
             <span>{index + 1}. </span>
             {nombre}
             {reordenado && (
@@ -79,10 +80,16 @@ const NombreLista = () => {
                 onChange={() => handleCheckboxChange(nombre)}
               />
             )}
+            <button className="editar-btn" onClick={() => editarNombre(nombre)}>
+              EDIT
+            </button>
+            <button className="borrar-btn" onClick={() => borrarNombre(nombre)}>
+              DELETE
+            </button>
           </li>
         ))}
       </ul>
-      {reordenado && <p>Los nombres han sido reasignados aleatoriamente.</p>}
+      {reordenado && <p>NEW LIST MADE</p>}
     </div>
   );
 };
